@@ -9,22 +9,10 @@
               "aff": ">=7.0.0 <8.0.0"
             },
             {
-              "arrays": ">=7.0.0 <8.0.0"
-            },
-            {
               "datetime": ">=6.0.0 <7.0.0"
             },
             {
               "effect": ">=4.0.0 <5.0.0"
-            },
-            {
-              "either": ">=6.0.0 <7.0.0"
-            },
-            {
-              "foldable-traversable": ">=6.0.0 <7.0.0"
-            },
-            {
-              "foreign-object": ">=4.0.0 <5.0.0"
             },
             {
               "js-promise": ">=1.0.0 <2.0.0"
@@ -43,12 +31,6 @@
             },
             {
               "prelude": ">=6.0.0 <7.0.0"
-            },
-            {
-              "record": ">=4.0.0 <5.0.0"
-            },
-            {
-              "transformers": ">=6.0.0 <7.0.0"
             }
           ]
         },
@@ -766,26 +748,6 @@
         "unsafe-coerce"
       ]
     },
-    "foreign-object": {
-      "type": "registry",
-      "version": "4.1.0",
-      "integrity": "sha256-x/Q7r80z/vmHRKvPwhYmHP/DnJciPtsyGfRTMzayKIU=",
-      "dependencies": [
-        "arrays",
-        "foldable-traversable",
-        "functions",
-        "gen",
-        "lists",
-        "maybe",
-        "prelude",
-        "st",
-        "tailrec",
-        "tuples",
-        "typelevel-prelude",
-        "unfoldable",
-        "unsafe-coerce"
-      ]
-    },
     "functions": {
       "type": "registry",
       "version": "6.0.0",
@@ -1050,16 +1012,6 @@
         "tuples"
       ]
     },
-    "record": {
-      "type": "registry",
-      "version": "4.0.0",
-      "integrity": "sha256-WQ8fqp4X1wTA70J4qUcPW4Z7DCwx6e5KJnT/EuTdWSc=",
-      "dependencies": [
-        "functions",
-        "prelude",
-        "unsafe-coerce"
-      ]
-    },
     "refs": {
       "type": "registry",
       "version": "6.0.0",
@@ -1163,15 +1115,6 @@
       "version": "4.0.1",
       "integrity": "sha256-BBqYOSnAKmayRvR5mtZoCf4SlYs2ipatD/+5nQx73aw=",
       "dependencies": []
-    },
-    "typelevel-prelude": {
-      "type": "registry",
-      "version": "7.0.0",
-      "integrity": "sha256-+pHi14/40mTj/+lmCWqL0T7iXIXD1+NSg/KItyyoB0A=",
-      "dependencies": [
-        "prelude",
-        "type-equality"
-      ]
     },
     "unfoldable": {
       "type": "registry",
