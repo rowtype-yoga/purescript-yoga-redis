@@ -23,26 +23,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-
-      - name: Setup Node.js 22 (required for Spago 1.x)
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-
-      - name: Setup PureScript
-        uses: purescript-contrib/setup-purescript@main
-        with:
-          purescript: "0.15.15"
-          spago: "unstable"
-
-      - name: Setup Bun (for fast npm installs)
-        uses: oven-sh/setup-bun@v1
-
-      - name: Install npm dependencies
-        run: bun install
-
-      - name: Build
-        run: spago build
-
-      - name: Run tests
-        run: spago test
+      - uses: rowtype-yoga/purescript-yoga-actions/.github/actions/setup@main
+      - run: spago build
+      - run: spago test
