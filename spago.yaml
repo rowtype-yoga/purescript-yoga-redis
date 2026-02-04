@@ -1,6 +1,8 @@
 workspace:
   package_set:
     registry: 51.1.0
+  extra_packages:
+    yoga-test-docker: 0.1.0
 
 package:
   name: yoga-redis
@@ -20,3 +22,10 @@ package:
     - newtype: ">=5.0.0 <6.0.0"
     - nullable: ">=6.0.0 <7.0.0"
     - prelude: ">=6.0.0 <7.0.0"
+  test:
+    main: Test.Redis.Main
+    dependencies:
+      - spec: ">=7.0.0 <8.0.0"
+      - exceptions: ">=6.0.0 <7.0.0"
+      - console: ">=6.0.0 <7.0.0"
+      - yoga-test-docker: ">=0.1.0 <1.0.0"
