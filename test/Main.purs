@@ -10,6 +10,7 @@ import Effect (Effect)
 import Effect.Aff (Aff, delay, launchAff_, try, bracket)
 import Effect.Class (liftEffect)
 import Effect.Console (log)
+import Node.Process (lookupEnv)
 import Test.Spec (Spec, around, describe, it)
 import Test.Spec.Assertions (shouldEqual, shouldSatisfy)
 import Test.Spec.Reporter.Console (consoleReporter)
@@ -419,19 +420,25 @@ spec = do
 
 main :: Effect Unit
 main = launchAff_ do
-  liftEffect $ log "\n🧪 Starting Redis Integration Tests (with Docker)\n"
-
-  bracket
-    -- Start Docker before tests
-    ( do
-        liftEffect $ log "⏳ Starting Redis and waiting for it to be ready..."
-        Docker.startService "docker-compose.test.yml" 30
-        liftEffect $ log "✅ Redis is ready!\n"
-    )
-    -- Stop Docker after tests (always runs!)
-    ( \_ -> do
-        Docker.stopService "docker-compose.test.yml"
-        liftEffect $ log "✅ Cleanup complete\n"
-    )
-    -- Run tests
-    (\_ -> runSpec [ consoleReporter ] spec)
+  -- Check if we should skip Docker (CI provides Redis)
+  skipDocker <- liftEffect $ lookupEnv "SKIP_DOCKER"
+  
+  case skipDocker of
+    Just _ -> do
+      -- CI mode: Redis is already running
+      liftEffect $ log "\n🧪 Starting Redis Integration Tests (CI mode)\n"
+      runSpec [ consoleReporter ] spec
+    Nothing -> do
+      -- Local mode: Start Docker Compose
+      liftEffect $ log "\n🧪 Starting Redis Integration Tests (with Docker)\n"
+      bracket
+        ( do
+            liftEffect $ log "⏳ Starting Redis and waiting for it to be ready..."
+            Docker.startService "docker-compose.test.yml" 30
+            liftEffect $ log "✅ Redis is ready!\n"
+        )
+        ( \_ -> do
+            Docker.stopService "docker-compose.test.yml"
+            liftEffect $ log "✅ Cleanup complete\n"
+        )
+        (\_ -> runSpec [ consoleReporter ] spec)

@@ -24,5 +24,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: rowtype-yoga/purescript-yoga-actions/.github/actions/setup@main
-      - run: spago build
-      - run: spago test
+      
+      - name: Build
+        run: spago build
+      
+      - name: Test (skip Docker - CI provides Redis)
+        run: spago test
+        env:
+          SKIP_DOCKER: "true"
