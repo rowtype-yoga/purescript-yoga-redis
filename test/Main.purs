@@ -425,12 +425,12 @@ main = launchAff_ do
     -- Start Docker before tests
     ( do
         liftEffect $ log "⏳ Starting Redis and waiting for it to be ready..."
-        Docker.startService "packages/yoga-redis/docker-compose.test.yml" 30
+        Docker.startService "docker-compose.test.yml" 30
         liftEffect $ log "✅ Redis is ready!\n"
     )
     -- Stop Docker after tests (always runs!)
     ( \_ -> do
-        Docker.stopService "packages/yoga-redis/docker-compose.test.yml"
+        Docker.stopService "docker-compose.test.yml"
         liftEffect $ log "✅ Cleanup complete\n"
     )
     -- Run tests
