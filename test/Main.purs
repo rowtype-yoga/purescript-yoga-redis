@@ -29,7 +29,7 @@ testPort = Redis.RedisPort 6380 -- Test port from docker-compose.test.yml
 withRedis :: (Redis.Redis -> Aff Unit) -> Aff Unit
 withRedis test = do
   redis <- liftEffect $ Redis.createRedis { host: testHost, port: testPort }
-  _ <- Redis.connect redis
+  -- Redis auto-connects, so no need to call connect explicitly
   -- Clean up test keys before each test
   _ <- try $ Redis.del [ Redis.RedisKey "test:*" ] redis
   test redis
