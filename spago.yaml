@@ -1,3 +1,7 @@
+workspace:
+  package_set:
+    registry: 51.1.0
+
 package:
   name: yoga-redis
   publish:
@@ -5,8 +9,7 @@ package:
     license: MIT
     location:
       githubOwner: rowtype-yoga
-      githubRepo: purescript-yoga-backend-stack
-      subdir: packages/yoga-redis
+      githubRepo: purescript-yoga-redis
   dependencies:
     - aff: ">=7.0.0 <8.0.0"
     - arrays: ">=7.0.0 <8.0.0"
@@ -29,4 +32,3 @@ package:
       - spec: ">=7.0.0 <8.0.0"
       - exceptions: ">=6.0.0 <7.0.0"
       - console: ">=6.0.0 <7.0.0"
-      - yoga-test-docker
